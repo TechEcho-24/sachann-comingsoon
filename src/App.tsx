@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MessageCircle, ChefHat, Leaf, ShieldCheck, ArrowRight, HeartHandshake, Eye } from 'lucide-react';
+import { MessageCircle, ChefHat, Leaf, ShieldCheck, ArrowRight, HeartHandshake, Eye, Settings2, MapPin, Clock, BadgeCheck, AlertCircle, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -179,117 +179,254 @@ function App() {
         </main>
       </div>
 
-      {/* Core Features Bar */}
-      <div className="bg-[#1A2E18] text-white py-12 px-6 md:px-12 border-t border-[#9B5B2E]/20">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10 md:gap-4">
-          <div className="flex items-start gap-4 flex-1">
-            <Leaf className="text-[#9B5B2E] mt-1 flex-shrink-0" size={32} />
-            <div>
-              <h4 className="font-bold text-xl mb-2 text-white">Earthy Premium</h4>
-              <p className="text-white/70 leading-relaxed text-sm md:text-base">Sourced directly from roots, maintaining traditional standards.</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 flex-1">
-            <ShieldCheck className="text-[#9B5B2E] mt-1 flex-shrink-0" size={32} />
-            <div>
-              <h4 className="font-bold text-xl mb-2 text-white">Proof-led Quality</h4>
-              <p className="text-white/70 leading-relaxed text-sm md:text-base">Transparency in source, process, and freshness.</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 flex-1">
-            <ChefHat className="text-[#9B5B2E] mt-1 flex-shrink-0" size={32} />
-            <div>
-              <h4 className="font-bold text-xl mb-2 text-white">Traditional Indian</h4>
-              <p className="text-white/70 leading-relaxed text-sm md:text-base">Authentic taste of Indian kitchens for your home.</p>
-            </div>
-          </div>
+      {/* Differentiation Section (Cinematic Layout) */}
+      <section className="relative w-full h-auto min-h-[80vh] md:min-h-[650px] flex flex-col justify-between overflow-hidden bg-black">
+        {/* Full Cover Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/stone_ground_bg.png" 
+            alt="Traditional stone grinding chakki" 
+            className="w-full h-full object-cover opacity-80"
+          />
+          {/* Subtle gradient to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
         </div>
-      </div>
+        
+        {/* Top Left Title Overlay */}
+        <div className="relative z-10 w-full p-6 md:p-12 lg:p-16 pt-24 md:pt-32">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-2xl bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-10 rounded-3xl shadow-2xl"
+          >
+            <h2 className="text-sm md:text-base font-medium text-white/90 tracking-wide mb-3">
+              Differentiation
+            </h2>
+            <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white font-serif leading-tight drop-shadow-lg">
+              The five reasons to believe.
+            </h3>
+          </motion.div>
+        </div>
 
-      {/* Core Insight Section */}
-      <section className="py-24 bg-[#F5EFE6] relative">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-sm font-bold text-[#9B5B2E] tracking-widest uppercase mb-4">Core Insight</h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-[#1A2E18]">The strongest claim is personal.</h3>
-          </div>
+        {/* Bottom 5-Points Band */}
+        <div className="relative z-10 w-full bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-16 pb-8 md:pb-12 px-6 md:px-12 lg:px-16 mt-auto">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
+              
+              {/* Point 1 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="flex flex-col"
+              >
+                <Settings2 className="text-white mb-4 drop-shadow-md" size={32} strokeWidth={1.5} />
+                <h4 className="text-white font-semibold text-sm md:text-base leading-snug mb-2 drop-shadow-sm">
+                  Low-RPM stone grinding
+                </h4>
+                <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+                  Preserves natural aroma, texture and character.
+                </p>
+              </motion.div>
+              
+              {/* Point 2 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="flex flex-col"
+              >
+                <MapPin className="text-white mb-4 drop-shadow-md" size={32} strokeWidth={1.5} />
+                <h4 className="text-white font-semibold text-sm md:text-base leading-snug mb-2 drop-shadow-sm">
+                  Local farm sourcing
+                </h4>
+                <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+                  Built on trusted, familiar farming networks.
+                </p>
+              </motion.div>
+              
+              {/* Point 3 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="flex flex-col"
+              >
+                <Clock className="text-white mb-4 drop-shadow-md" size={32} strokeWidth={1.5} />
+                <h4 className="text-white font-semibold text-sm md:text-base leading-snug mb-2 drop-shadow-sm">
+                  Small-batch freshness
+                </h4>
+                <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+                  Grinding/packing dates can make freshness visible.
+                </p>
+              </motion.div>
+              
+              {/* Point 4 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="flex flex-col"
+              >
+                <HeartHandshake className="text-white mb-4 drop-shadow-md" size={32} strokeWidth={1.5} />
+                <h4 className="text-white font-semibold text-sm md:text-base leading-snug mb-2 drop-shadow-sm">
+                  Family-tested standard
+                </h4>
+                <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+                  The same quality expected in our own homes.
+                </p>
+              </motion.div>
+              
+              {/* Point 5 */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="flex flex-col col-span-2 md:col-span-1"
+              >
+                <BadgeCheck className="text-white mb-4 drop-shadow-md" size={32} strokeWidth={1.5} />
+                <h4 className="text-white font-semibold text-sm md:text-base leading-snug mb-2 drop-shadow-sm">
+                  Proof-led trust
+                </h4>
+                <p className="text-white/70 text-xs md:text-sm leading-relaxed">
+                  Lab reports, process videos, farm photos and comparisons.
+                </p>
+              </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-xl border border-[#9B5B2E]/20 p-10 md:p-14 rounded-[2.5rem] shadow-xl"
-            >
-              <h4 className="text-[#9B5B2E] font-bold mb-6 tracking-wide uppercase text-sm">Current Promise</h4>
-              <p className="text-3xl md:text-4xl font-medium text-[#1A2E18] leading-snug mb-8">
-                "If we wouldn't serve it to our own family, we simply won't pack it for you."
-              </p>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                This turns SachAnn from another "organic" brand into a family-standard food brand. Build a food brand around belief, proof and repeat purchase, not just a product list.
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] border-[6px] border-[#1A2E18]/10"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?q=80&w=2070&auto=format&fit=crop" 
-                alt="Family cooking together" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* The Trust Gap Section */}
-      <section className="py-24 bg-white relative">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-          <div className="mb-16 md:text-center">
-            <h2 className="text-sm font-bold text-[#9B5B2E] tracking-widest uppercase mb-4">Customer Problem</h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-[#1A2E18] max-w-3xl md:mx-auto">
-              The trust gap in everyday staples
+      {/* Customer Problem Section (Glassmorphism Layout) */}
+      <section className="relative w-full min-h-[80vh] flex items-center justify-center py-20 px-4 md:px-8 overflow-hidden bg-black">
+        {/* Full Cover Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/abstract_nature_bg.png" 
+            alt="Abstract natural background with bokeh" 
+            className="w-full h-full object-cover opacity-80"
+          />
+          {/* Subtle dark overlay to make white text pop */}
+          <div className="absolute inset-0 bg-black/30"></div>
+        </div>
+        
+        {/* Floating Glass Panel */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative z-10 w-full max-w-[1300px] bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row gap-12 lg:gap-16 items-center lg:items-stretch"
+        >
+          {/* Left Column: Heading */}
+          <div className="w-full lg:w-5/12 flex flex-col justify-center text-center lg:text-left">
+            <h2 className="text-xs md:text-sm font-bold text-white/70 tracking-[0.2em] uppercase mb-4">
+              The Core Problem
+            </h2>
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-serif leading-tight mb-6 drop-shadow-lg">
+              The trust gap in everyday staples.
             </h3>
+            
+            {/* Divider Line */}
+            <div className="h-[1px] w-24 bg-white/30 my-6 mx-auto lg:mx-0"></div>
+            
+            <p className="text-base md:text-lg text-white/90 leading-relaxed font-medium">
+              You are not just buying atta, dal or masala.<br className="hidden lg:block" />
+              You are asking: "Can I trust what my family eats every day?"
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-[#F5EFE6] p-10 rounded-[2rem] border border-[#9B5B2E]/10 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
-              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                <Eye className="text-[#9B5B2E]" size={28} />
-              </div>
-              <p className="text-[#1A2E18] font-semibold text-xl leading-relaxed">
-                Too many generic claims: organic, pure, natural, premium.
+          
+          {/* Right Column: 3 Points */}
+          <div className="w-full lg:w-7/12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 items-center">
+            
+            {/* Point 1 */}
+            <div className="flex flex-col items-center text-center">
+              <AlertCircle size={48} strokeWidth={1} className="text-white mb-6 drop-shadow-sm opacity-90" />
+              <h4 className="text-sm md:text-base font-bold text-white mb-3">
+                Generic claims
+              </h4>
+              <p className="text-xs md:text-sm text-white/70 leading-relaxed max-w-[200px]">
+                Too many generic claims: organic, pure, natural, and premium.
               </p>
             </div>
             
-            <div className="bg-[#F5EFE6] p-10 rounded-[2rem] border border-[#9B5B2E]/10 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 group">
-              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                <ShieldCheck className="text-[#9B5B2E]" size={28} />
-              </div>
-              <p className="text-[#1A2E18] font-semibold text-xl leading-relaxed">
-                Customer wants proof: source, process, freshness and performance.
+            {/* Point 2 */}
+            <div className="flex flex-col items-center text-center">
+              <Search size={48} strokeWidth={1} className="text-white mb-6 drop-shadow-sm opacity-90" />
+              <h4 className="text-sm md:text-base font-bold text-white mb-3">
+                Customer wants proof
+              </h4>
+              <p className="text-xs md:text-sm text-white/70 leading-relaxed max-w-[200px]">
+                Source, process, freshness and performance.
               </p>
             </div>
             
-            <div className="bg-[#1A2E18] p-10 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1 group border border-[#9B5B2E]/30">
-              <div className="w-16 h-16 rounded-full bg-[#9B5B2E] flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform">
-                <HeartHandshake className="text-white" size={28} />
-              </div>
-              <p className="text-white font-bold text-xl leading-relaxed">
+            {/* Point 3 */}
+            <div className="flex flex-col items-center text-center">
+              <ShieldCheck size={48} strokeWidth={1} className="text-white mb-6 drop-shadow-sm opacity-90" />
+              <h4 className="text-sm md:text-base font-bold text-white mb-3">
+                Visible Trust
+              </h4>
+              <p className="text-xs md:text-sm text-white/70 leading-relaxed max-w-[200px]">
                 SachAnn can make trust visible before asking for trust.
               </p>
             </div>
+            
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1A2E18] text-white/60 py-12 text-center text-sm border-t border-white/10">
-        <p>© 2026 The SachAnn Company. All rights reserved.</p>
+      <footer className="bg-white text-[#1A2E18] pt-16 pb-8 border-t border-[#1A2E18]/5">
+        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-12 mb-12">
+            
+            {/* Logo and Tagline */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm">
+              <img src="/footerlogo.png" alt="The SachAnn Company" className="h-12 md:h-16 lg:h-20 w-auto mb-6 object-contain" />
+              <p className="text-sm md:text-base text-[#8A4F27] leading-relaxed font-medium">
+                Making trust visible in everyday staples. Because your family deserves nothing less.
+              </p>
+            </div>
+            
+            {/* Links */}
+            <div className="flex gap-12 md:gap-24 text-center md:text-left mt-4 md:mt-0">
+              <div>
+                <h4 className="font-bold text-[#C48446] mb-5 text-sm tracking-[0.15em] uppercase">Company</h4>
+                <ul className="space-y-4 text-sm md:text-base text-[#1A2E18]/70">
+                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Our Story</a></li>
+                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Process</a></li>
+                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Contact</a></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-[#C48446] mb-5 text-sm tracking-[0.15em] uppercase">Legal</h4>
+                <ul className="space-y-4 text-sm md:text-base text-[#1A2E18]/70">
+                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Privacy</a></li>
+                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Terms</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-[#1A2E18]/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-[#1A2E18]/50 font-medium">
+            <p>© {new Date().getFullYear()} The SachAnn Company. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-[#C48446] transition-colors">Instagram</a>
+              <a href="#" className="hover:text-[#C48446] transition-colors">Facebook</a>
+              <a href="#" className="hover:text-[#C48446] transition-colors">WhatsApp</a>
+            </div>
+          </div>
+        </div>
       </footer>
 
       {/* Floating WhatsApp Button */}
