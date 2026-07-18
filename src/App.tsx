@@ -5,7 +5,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 function App() {
   const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
   
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    try {
+      const response = await fetch("https://formspree.io/f/xgogkzbj", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Form submission error", error);
+    }
+  };
+
   const whatsappNumber = "8318999388";
   const whatsappUrl = `https://wa.me/91${whatsappNumber}?text=Hi%20SachAnn%2C%20I%20would%20like%20to%20know%20more!`;
 
@@ -94,7 +117,16 @@ function App() {
             {/* Interactive Waitlist CTA */}
             <div className="flex justify-center mt-4 h-14 md:h-16 w-full max-w-md mx-auto">
               <AnimatePresence mode="wait">
-                {!showInput ? (
+                {submitted ? (
+                  <motion.div
+                    key="waitlist-success"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="inline-flex items-center justify-center px-8 py-3.5 md:py-4 rounded-full bg-[#1A2E18]/80 backdrop-blur-md border border-white/20 text-[#E5D3B3] text-lg font-bold shadow-2xl w-full"
+                  >
+                    <span>Thank you! We'll be in touch.</span>
+                  </motion.div>
+                ) : !showInput ? (
                   <motion.button 
                     key="waitlist-btn"
                     initial={{ opacity: 0, y: 10 }}
@@ -102,7 +134,7 @@ function App() {
                     exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
                     transition={{ duration: 0.2 }}
                     onClick={() => setShowInput(true)}
-                    className="inline-flex items-center justify-center gap-3 px-8 py-3.5 md:py-4 rounded-full bg-[#9B5B2E] text-white text-lg font-bold hover:bg-[#8A4F27] transition-all shadow-2xl group border border-white/10"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-3.5 md:py-4 rounded-full bg-[#9B5B2E] text-white text-lg font-bold hover:bg-[#8A4F27] transition-all shadow-2xl group border border-white/10 w-full md:w-auto"
                   >
                     <span>Join the Waitlist</span>
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -110,11 +142,10 @@ function App() {
                 ) : (
                   <motion.form 
                     key="waitlist-form"
+                    onSubmit={handleSubmit}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3 }}
-                    action="https://formspree.io/f/xgogkzbj" 
-                    method="POST"
                     className="flex w-full relative"
                   >
                     <input 
