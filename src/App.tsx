@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MessageCircle, ChefHat, Leaf, ShieldCheck, ArrowRight, HeartHandshake, Eye, Settings2, MapPin, Clock, BadgeCheck, AlertCircle, Search } from 'lucide-react';
+import { MessageCircle, ShieldCheck, ArrowRight, HeartHandshake, Settings2, MapPin, Clock, BadgeCheck, AlertCircle, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
