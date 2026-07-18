@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MessageCircle, ChefHat, Leaf, ShieldCheck, ArrowRight, HeartHandshake, Eye } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -23,36 +23,35 @@ function App() {
             className="w-full h-full object-cover"
           />
           {/* Subtle dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/30"></div>
-          {/* Very soft radial dark gradient specifically behind the text area */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/60 via-black/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-black/40"></div>
+          {/* Very soft radial dark gradient (reduced opacity since we now have text backgrounds) */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/40 via-black/10 to-transparent"></div>
         </div>
 
         {/* Floating Header (Like previous version but with dark green glass) */}
         <header className="absolute top-0 left-0 w-full z-30 p-6 md:p-10 flex justify-between items-center pointer-events-none">
-          {/* Left Pill (Logo) - Dark Green Glass */}
+          {/* Left Pill (Logo) - Transparent Green Glass */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="pointer-events-auto px-4 py-2 md:px-5 md:py-2 rounded-full bg-[#1A2E18]/80 backdrop-blur-md border border-[#1A2E18]/50 shadow-lg flex items-center"
+            className="pointer-events-auto px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-[#1A2E18]/40 backdrop-blur-md border border-white/20 shadow-lg flex items-center gap-2"
           >
-             <span className="font-serif text-base md:text-xl font-bold text-white flex items-center gap-1 drop-shadow-md leading-none">
-              <span className="text-[10px] md:text-xs font-normal italic mr-1 text-[#E5D3B3]">the</span>
-              SachAnn
-              <span className="text-[10px] md:text-xs font-normal italic ml-1 text-[#E5D3B3]">company</span>
+            <img src="/favicon.png" alt="SachAnn Logo" className="w-5 h-5 object-contain drop-shadow-md" />
+            <span className="font-serif text-sm md:text-base font-bold text-white drop-shadow-md leading-none">
+              The SachAnn Company
             </span>
           </motion.div>
 
-          {/* Right Pill (Contact Us) - Dark Green Glass */}
+          {/* Right Pill (Contact Us) - Transparent Green Glass */}
           <motion.a 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="pointer-events-auto px-4 py-2 md:px-5 md:py-2 rounded-full bg-[#1A2E18]/80 backdrop-blur-md hover:bg-[#1A2E18] border border-[#1A2E18]/50 shadow-lg flex items-center gap-2 transition-colors text-white text-xs md:text-sm font-bold drop-shadow-sm leading-none"
+            className="pointer-events-auto px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-[#1A2E18]/40 backdrop-blur-md hover:bg-[#1A2E18]/60 border border-white/20 shadow-lg flex items-center gap-2 transition-colors text-white text-sm md:text-base font-bold drop-shadow-sm leading-none"
           >
-            <MessageCircle size={16} className="md:w-[18px] md:h-[18px]" />
+            <MessageCircle className="w-5 h-5" />
             <span className="hidden sm:inline">Contact Us</span>
             <span className="sm:hidden">Chat</span>
           </motion.a>
