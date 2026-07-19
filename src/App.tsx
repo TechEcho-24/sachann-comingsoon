@@ -123,28 +123,28 @@ function App() {
             className="max-w-3xl flex flex-col items-center"
           >
             {/* Launching Soon Badge */}
-            <div className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-[#9B5B2E] text-white text-sm font-bold tracking-widest mb-8 shadow-md border border-white/10">
+            <div className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-[#9B5B2E] text-white text-sm font-bold tracking-widest mb-5 md:mb-8 shadow-md border border-white/10">
               <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
               LAUNCHING SOON
             </div>
             
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] leading-[1.1] mb-4">
+            <h1 className="text-[40px] md:text-6xl lg:text-7xl font-bold text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] leading-tight md:leading-[1.1] mb-1 md:mb-4">
               Food we trust at home
             </h1>
             
             {/* Sub Headline (Italic) */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl italic font-light text-[#E5D3B3] drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] mb-8">
+            <h2 className="text-[32px] md:text-5xl lg:text-6xl italic font-light text-[#E5D3B3] drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] mb-5 md:mb-8">
               now made for yours.
             </h2>
             
             {/* Description Text */}
-            <p className="text-lg md:text-xl text-white leading-relaxed font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-4 max-w-xl">
+            <p className="text-base md:text-xl text-white leading-relaxed font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-3 md:mb-4 max-w-xl">
               The customer is not only buying atta, dal or masala. They are asking: 
               <span className="font-semibold text-[#E5D3B3]"> "Can I trust what my family eats every day?"</span> 
             </p>
             
-            <p className="text-lg md:text-xl text-white leading-relaxed font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-12 max-w-xl">
+            <p className="text-base md:text-xl text-white leading-relaxed font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-8 md:mb-12 max-w-xl">
               SachAnn makes trust visible before asking for it.
             </p>
             
