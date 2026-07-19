@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { MessageCircle, ShieldCheck, ArrowRight, HeartHandshake, Settings2, MapPin, Clock, BadgeCheck, AlertCircle, Search } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { MessageCircle, ShieldCheck, ArrowRight, HeartHandshake, Settings2, MapPin, Clock, BadgeCheck, AlertCircle, Search, X, Gift } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -7,6 +7,39 @@ function App() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   
+  const [footerEmail, setFooterEmail] = useState('');
+  const [footerSubmitted, setFooterSubmitted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+  
+  const handleFooterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!footerEmail) return;
+
+    try {
+      const response = await fetch("https://formspree.io/f/xgogkzbj", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ email: footerEmail })
+      });
+
+      if (response.ok) {
+        setFooterSubmitted(true);
+      }
+    } catch (error) {
+      console.error("Form submission error", error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
@@ -115,7 +148,7 @@ function App() {
             </p>
             
             {/* Interactive Waitlist CTA */}
-            <div className="flex justify-center mt-4 h-14 md:h-16 w-full max-w-md mx-auto">
+            <div className="flex justify-center mt-4 h-auto min-h-[3.5rem] md:min-h-[4rem] w-full max-w-md mx-auto">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -384,46 +417,133 @@ function App() {
         </motion.div>
       </section>
 
+      {/* Pre-Order WhatsApp CTA Section */}
+      <section className="relative w-full bg-white overflow-hidden flex flex-col items-center justify-center py-16 md:py-24 px-4 md:px-12 text-center border-t border-[#1A2E18]/5">
+        
+        {/* Faint Background Image */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <img src="/ingredients_bg.png" alt="" className="w-full h-full object-cover opacity-[0.12] mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/50 to-white/95"></div>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center"
+        >
+          
+          {/* Subtle Color Blobs in the Card */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#E5D3B3]/40 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2 z-0"></div>
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#1A2E18]/5 rounded-full blur-[80px] pointer-events-none translate-y-1/2 -translate-x-1/2 z-0"></div>
+          
+          {/* Badge */}
+          <div className="relative z-10 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/50 backdrop-blur-md text-[#8A4F27] text-xs md:text-sm font-bold tracking-widest mb-6 border border-[#1A2E18]/10 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
+            LIMITED EARLY SLOTS
+          </div>
+
+          {/* Text Content */}
+          <div className="relative z-10 w-full mb-10">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#1A2E18] font-serif mb-6 leading-tight drop-shadow-sm">
+              Why wait for purity?
+            </h2>
+            <p className="text-base md:text-xl text-[#1A2E18]/80 mb-6 max-w-2xl mx-auto leading-relaxed font-light">
+              Your family's health shouldn't be put on hold. While we prepare for our grand launch, we are opening a few exclusive slots for early believers.
+            </p>
+            <p className="text-sm md:text-lg text-[#8A4F27] max-w-xl mx-auto leading-relaxed font-medium">
+              Experience the aroma of freshly stone-ground wheat and unpolished dals, straight from our chakki to your kitchen.
+            </p>
+          </div>
+
+          {/* Button CTA */}
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <div className="relative group w-full sm:w-auto">
+              
+              <a 
+                href={whatsappUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="relative flex items-center justify-center gap-3 px-8 py-5 md:px-12 md:py-6 rounded-full font-bold text-lg md:text-xl transition-all duration-300 w-full whitespace-nowrap overflow-hidden hover:-translate-y-1"
+              >
+                {/* Glossy Background Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#2A4227] to-[#1A2E18]"></div>
+                
+                {/* Top Glass Highlight */}
+                <div className="absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-white/20 to-transparent rounded-t-full pointer-events-none"></div>
+                
+                {/* Inner Edge Highlight */}
+                <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none"></div>
+
+                {/* Hover Brightness Overlay */}
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300 pointer-events-none"></div>
+
+                {/* Content */}
+                <div className="relative z-10 flex items-center justify-center gap-3 text-white drop-shadow-md">
+                  <MessageCircle className="w-7 h-7 md:w-8 md:h-8 drop-shadow-sm group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Pre-order on WhatsApp</span>
+                </div>
+              </a>
+            </div>
+            <p className="mt-5 text-[#1A2E18]/50 text-xs md:text-sm font-medium">
+              Chat directly with our founders. No automated bots.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Footer */}
-      <footer className="bg-white text-[#1A2E18] pt-16 pb-8 border-t border-[#1A2E18]/5">
+      <footer className="bg-white text-[#1A2E18] pt-16 pb-24 md:pb-8 border-t border-[#1A2E18]/5">
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-12 mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12 md:gap-20 mb-16">
             
             {/* Logo and Tagline */}
-            <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm">
-              <img src="/footerlogo.png" alt="The SachAnn Company" className="h-12 md:h-16 lg:h-20 w-auto mb-6 object-contain" />
+            <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-sm flex-1">
+              <img src="/footerlogo.png" alt="The SachAnn Company" className="h-16 md:h-20 lg:h-24 w-auto mb-6 object-contain" />
               <p className="text-sm md:text-base text-[#8A4F27] leading-relaxed font-medium">
                 Making trust visible in everyday staples. Because your family deserves nothing less.
               </p>
             </div>
             
-            {/* Links */}
-            <div className="flex gap-12 md:gap-24 text-center md:text-left mt-4 md:mt-0">
-              <div>
-                <h4 className="font-bold text-[#C48446] mb-5 text-sm tracking-[0.15em] uppercase">Company</h4>
-                <ul className="space-y-4 text-sm md:text-base text-[#1A2E18]/70">
-                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Our Story</a></li>
-                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Process</a></li>
-                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Contact</a></li>
-                </ul>
-              </div>
+            {/* Waitlist Form */}
+            <div className="flex-1 w-full max-w-md">
+              <h4 className="font-bold text-[#1A2E18] mb-4 text-xl font-serif text-center md:text-left">Be the first to know</h4>
+              <p className="text-[#1A2E18]/70 text-sm mb-6 text-center md:text-left">
+                Join our waitlist to get notified when we officially launch and receive exclusive early-bird offers.
+              </p>
               
-              <div>
-                <h4 className="font-bold text-[#C48446] mb-5 text-sm tracking-[0.15em] uppercase">Legal</h4>
-                <ul className="space-y-4 text-sm md:text-base text-[#1A2E18]/70">
-                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Privacy</a></li>
-                  <li><a href="#" className="hover:text-[#C48446] transition-colors font-medium">Terms</a></li>
-                </ul>
-              </div>
+              {footerSubmitted ? (
+                <div className="bg-[#1A2E18]/5 p-4 rounded-xl border border-[#1A2E18]/10 text-[#1A2E18] font-medium text-center w-full">
+                  Thank you! You're on the list.
+                </div>
+              ) : (
+                <form onSubmit={handleFooterSubmit} className="flex flex-col sm:flex-row gap-3 w-full">
+                  <input
+                    type="email"
+                    value={footerEmail}
+                    onChange={(e) => setFooterEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full sm:flex-1 px-5 py-3 rounded-xl border border-[#1A2E18]/20 focus:outline-none focus:border-[#C48446] focus:ring-1 focus:ring-[#C48446] transition-all bg-white"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto bg-[#1A2E18] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#2A4227] transition-colors whitespace-nowrap shadow-md flex justify-center items-center"
+                  >
+                    Join Waitlist
+                  </button>
+                </form>
+              )}
             </div>
           </div>
           
           <div className="border-t border-[#1A2E18]/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-[#1A2E18]/50 font-medium">
             <p>© {new Date().getFullYear()} The SachAnn Company. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-[#C48446] transition-colors">Instagram</a>
-              <a href="#" className="hover:text-[#C48446] transition-colors">Facebook</a>
-              <a href="#" className="hover:text-[#C48446] transition-colors">WhatsApp</a>
+              <a href="https://www.instagram.com/thesachancompany?igsh=bGtiOWc2bmJ2a2ww" target="_blank" rel="noopener noreferrer" className="hover:text-[#C48446] transition-colors">Instagram</a>
+              <span className="opacity-50 cursor-not-allowed" title="Coming Soon">Facebook</span>
+              <span className="opacity-50 cursor-not-allowed" title="Coming Soon">WhatsApp</span>
             </div>
           </div>
         </div>
@@ -450,6 +570,81 @@ function App() {
               Chat with us!
             </span>
           </motion.a>
+        )}
+      </AnimatePresence>
+
+      {/* Pre-order Promo Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowPopup(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            ></motion.div>
+
+            {/* Popup Card (Portrait) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-[400px] bg-white rounded-[2rem] overflow-hidden shadow-2xl flex flex-col items-center text-center z-10 border border-white/20"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setShowPopup(false)}
+                className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/50 text-white backdrop-blur-md transition-colors"
+              >
+                <X size={18} />
+              </button>
+
+              {/* Image Header */}
+              <div className="relative w-full h-56 bg-[#1A2E18]">
+                <img src="/stone_ground_bg.png" alt="Promo" className="w-full h-full object-cover opacity-70 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                
+                {/* Floating Gift Icon */}
+                <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#F9F6F0] rounded-full border-[3px] border-white flex items-center justify-center shadow-lg">
+                  <Gift className="w-8 h-8 text-[#C48446]" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="pt-12 pb-8 px-8 w-full flex flex-col items-center">
+                <h3 className="text-3xl font-bold text-[#1A2E18] font-serif mb-3 leading-tight">
+                  Waitlist<br/>Exclusive Offer!
+                </h3>
+                <p className="text-[15px] text-[#8A4F27] mb-8 font-medium leading-relaxed px-2">
+                  Pre-order your favorite staples today and get <span className="font-bold text-[#1A2E18]">10% OFF</span> plus a <span className="font-bold text-[#1A2E18]">FREE</span> surprise gift with your first order.
+                </p>
+
+                {/* Button */}
+                <div className="w-full relative group mb-4">
+                  <div className="absolute -inset-1 bg-[#1A2E18] rounded-full blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
+                  <a 
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setShowPopup(false)}
+                    className="relative flex items-center justify-center gap-2 bg-[#1A2E18] text-white w-full py-3.5 rounded-full font-bold text-[15px] hover:bg-[#2A4227] hover:-translate-y-0.5 transition-all shadow-md"
+                  >
+                    <MessageCircle size={20} />
+                    Claim Offer
+                  </a>
+                </div>
+
+                <button 
+                  onClick={() => setShowPopup(false)}
+                  className="text-[11px] text-[#1A2E18]/40 hover:text-[#1A2E18]/80 font-medium underline-offset-4 hover:underline transition-colors tracking-wide uppercase"
+                >
+                  No thanks, I'll wait
+                </button>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
