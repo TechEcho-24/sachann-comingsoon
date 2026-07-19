@@ -63,7 +63,8 @@ function App() {
   };
 
   const whatsappNumber = "8318999388";
-  const whatsappUrl = `https://wa.me/91${whatsappNumber}?text=Hi%20SachAnn%2C%20I%20would%20like%20to%20know%20more!`;
+  const whatsappMessage = encodeURIComponent("Hi! I just discovered SachAnn and love the idea of pure, stone-ground staples. 🌾 I'd like to claim my 10% OFF and free gift, and place my first order!");
+  const whatsappUrl = `https://wa.me/91${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
     <div className="min-h-screen font-sans text-gray-800 bg-[#f8f6f0]">
@@ -167,7 +168,7 @@ function App() {
                     exit={{ opacity: 0, y: -10, filter: "blur(5px)" }}
                     transition={{ duration: 0.2 }}
                     onClick={() => setShowInput(true)}
-                    className="inline-flex items-center justify-center gap-3 px-8 py-3.5 md:py-4 rounded-full bg-[#9B5B2E] text-white text-lg font-bold hover:bg-[#8A4F27] transition-all shadow-2xl group border border-white/10 w-full md:w-auto"
+                    className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 md:px-8 py-3.5 md:py-4 rounded-full bg-[#9B5B2E] text-white text-base md:text-lg font-bold hover:bg-[#8A4F27] transition-all shadow-2xl group border border-white/10 w-full sm:w-auto"
                   >
                     <span>Join the Waitlist</span>
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -529,7 +530,7 @@ function App() {
                   />
                   <button
                     type="submit"
-                    className="w-full sm:w-auto bg-[#1A2E18] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#2A4227] transition-colors whitespace-nowrap shadow-md flex justify-center items-center"
+                    className="w-full sm:w-auto bg-[#1A2E18] text-white px-4 py-3 rounded-xl font-bold hover:bg-[#2A4227] transition-colors shadow-md flex justify-center items-center shrink-0"
                   >
                     Join Waitlist
                   </button>
